@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI-Calculator</title>
+    <link rel="shortcut icon" href="bmiFav.png" type="image/x-icon">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://kit.fontawesome.com/b87b03660d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <main>
+        <header>
+            <img src="undraw_athletes-training_koqa-removebg-preview.png" alt="" width="320px" height="200px">
+            <h1>BMI Calculator</h1>
+        </header>
+        <section class="inputSection">
+            <input type="text" id="weightInput" placeholder="🏋️‍♂️ Weight (kg)">
+            <input type="text" id="heightInput" placeholder="📏 Height (m)">
+            <button onclick="bmiChecker()">Calculate BMI</button>
+        </section>
+       <section class="output">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <div id="result"></div> 
+       </section>
+    </main>
+</body>
+</html>
+<script>
+    let inputTagOne = document.getElementById('weightInput')
+    let inputTagTwo = document.getElementById('heightInput')
+    let divTag = document.getElementById('result')
+
+    function bmiChecker() {
+        let weight = inputTagOne.value.trim()
+        let height = inputTagTwo.value.trim()
+        console.log(weight , height);
+        let bmi = weight / (height * height)
+        // let roundedNumber = bmi.toFixed(3)
+        let roundedNumber = Math.round(bmi * 1000)/1000
+        console.log(bmi, roundedNumber);
+
+        if (weight === '') {
+            divTag.innerHTML = `\u2757You need to send in your weight value.` 
+            divTag.style.backgroundColor = '#26292e'
+            divTag.style.border = '1px solid #5e6063'
+            divTag.style.borderRadius = '8px'
+            divTag.style.padding = '8px'
+
+        } else if (height === '') {
+            divTag.innerHTML = `\u2757You need to send in your height value.`
+            divTag.style.backgroundColor = '#26292e'
+            divTag.style.border = '1px solid #5e6063'
+            divTag.style.borderRadius = '8px'
+            divTag.style.padding = '8px'
+
+        } else if (isNaN(weight)) {
+            divTag.innerHTML = `\u2757You need to send in a numerical value for your weight.`
+            divTag.style.backgroundColor = '#26292e'
+            divTag.style.border = '1px solid #5e6063'
+            divTag.style.borderRadius = '8px'
+            divTag.style.padding = '8px'
+
+        } else if (isNaN(height)) {
+            divTag.innerHTML = `\u2757You need to send in a numerical value for your height.`
+            divTag.style.backgroundColor = '#26292e'
+            divTag.style.border = '1px solid #5e6063'
+            divTag.style.borderRadius = '8px'
+            divTag.style.padding = '8px'
+
+        } else if (bmi < 18.5) {
+            divTag.innerHTML = `Status: Underweight\u2757, your BMI IS : ${roundedNumber}. Kindly up your diet.`
+            // divTag.style.color = '#3b8fe9'
+            divTag.style.backgroundColor = '#3b8fe9'
+            divTag.style.border = '1px solid #062d58'
+            divTag.style.borderRadius = '8px'
+            divTag.style.padding = '8px'
+
+
+        } else if (bmi <= 24.9) {
+            divTag.innerHTML = `Status: Normal weight, your BMI IS : ${roundedNumber}. Keep it up.\u{1F44F}`
+            // divTag.style.color = '#39613b'
+            divTag.style.backgroundColor = '#39613b'
+            divTag.style.border = '1px solid #0c370e'
+            divTag.style.borderRadius = '8px'
+            divTag.style.padding = '8px'
+
+
+        } else if (bmi <= 29.9) {
+            divTag.innerHTML = `Status: Overweight\u2757, your BMI IS : ${roundedNumber}. You need to start observing intermittent fasting.`
+            // divTag.style.color = '#f0f0f0'
+            divTag.style.backgroundColor = '#fbc142'
+            divTag.style.border = '1px solid #533a05'
+            divTag.style.borderRadius = '8px'
+            divTag.style.padding = '8px'
+
+        } else {
+            divTag.innerHTML = `Status: Obese\u2757, your BMI IS : ${roundedNumber}. Hit the gym, fren.`
+            // divTag.style.color = '#f0f0f0'
+            divTag.style.backgroundColor = '#E2454B'
+            divTag.style.border = '1px solid #400507'
+            divTag.style.borderRadius = '8px'
+            divTag.style.padding = '8px'
+
+        }
+        
+        
+    }
+</script>
